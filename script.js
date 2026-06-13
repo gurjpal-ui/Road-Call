@@ -129,7 +129,7 @@ function addText(doc, label, value, x, y) {
   doc.setFont("helvetica", "bold");
   doc.text(`${label}:`, x, y);
   doc.setFont("helvetica", "normal");
-  doc.text(value || "", x + 44, y);
+  doc.text(value || "", x + 120, y);
 }
 
 function generatePdf() {
