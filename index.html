@@ -48,7 +48,12 @@
       </div>
       <div class="field full">
         <label>Service Location</label>
-        <input id="serviceLocation" type="text" placeholder="Highway 1 & 264 St Langley BC" />
+        <textarea
+          id="serviceLocation"
+          placeholder="19585 96AVE SURREY BC"
+          rows="3"
+        ></textarea>
+        
       </div>
       <div class="field">
         <label>Driver Name</label>
@@ -84,3 +89,10 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+document.addEventListener("input", function(e) {
+  if (e.target.id === "serviceLocation") {
+    e.target.style.height = "auto";
+    e.target.style.height = e.target.scrollHeight + "px";
+  }
+});
