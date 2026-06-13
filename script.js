@@ -200,10 +200,7 @@ function generatePdf() {
   doc.setFont("helvetica", "normal");
 
   units.forEach(unit => {
-    if (y > 720) {
-      doc.addPage();
-      y = 50;
-    }
+   
 
 const otherInfoLines = doc.splitTextToSize(unit.otherInfo || "", widths[4] - 10);
 
@@ -217,6 +214,12 @@ const maxLines = Math.max(
 );
 
 const rowHeight = Math.max(42, maxLines * 14 + 12);
+
+     if (y + rowHeight > 720) {
+      doc.addPage();
+      y = 50;
+    }
+    
     x = 40;
     doc.rect(40, y, 532, rowHeight);
 
