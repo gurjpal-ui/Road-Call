@@ -205,7 +205,18 @@ function generatePdf() {
       y = 50;
     }
 
-    const rowHeight = 42;
+const otherInfoLines = doc.splitTextToSize(unit.otherInfo || "", widths[4] - 10);
+
+const maxLines = Math.max(
+  1,
+  doc.splitTextToSize(unit.unitType || "", widths[0] - 10).length,
+  doc.splitTextToSize(unit.unitNumber || "", widths[1] - 10).length,
+  doc.splitTextToSize(unit.tireSize || "", widths[2] - 10).length,
+  doc.splitTextToSize(unit.position || "", widths[3] - 10).length,
+  otherInfoLines.length
+);
+
+const rowHeight = Math.max(42, maxLines * 14 + 12);
     x = 40;
     doc.rect(40, y, 532, rowHeight);
 
