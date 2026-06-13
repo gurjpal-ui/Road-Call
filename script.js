@@ -150,8 +150,8 @@ function generatePdf() {
 
   doc.addImage(logoBase64, "JPEG", 40, 30, 180, 48);
   doc.setFont("helvetica", "bold");
-  doc.setFontSize(20);
-  doc.text("ON-ROAD SERVICE CALL", 306, 62, { align: "right" });
+  doc.setFontSize(18);
+  doc.text("ON-ROAD SERVICE CALL", 570, 62, { align: "right" });
 
   doc.setDrawColor(246, 196, 0);
   doc.setLineWidth(4);
