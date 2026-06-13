@@ -171,12 +171,25 @@ function generatePdf() {
   doc.line(40, y, 572, y);
   y += 28;
 
-  addText(doc, "Customer Name", customerName, 40, y); y += 24;
-  addText(doc, "Phone Number", phoneNumber, 40, y); y += 24;
-  addText(doc, "Service Location", serviceLocation, 40, y); y += 24;
-  addText(doc, "Driver Name", driverName, 40, y); y += 24;
-  addText(doc, "Driver Phone", driverPhone, 40, y); y += 24;
-  addText(doc, "PO Number", poNumber, 40, y); y += 34;
+  function addWrappedText(doc, label, value, x, y, offset = 120, maxWidth = 380) {
+  doc.setFont("helvetica", "bold");
+  doc.text(`${label}:`, x, y);
+
+  doc.setFont("helvetica", "normal");
+  const lines = doc.splitTextToSize(value || "", maxWidth);
+  doc.text(lines, x + offset, y);
+
+  return y + Math.max(24, lines.length * 14 + 10);
+}
+
+y = addWrappedText(doc, "Customer Name", customerName, 40, y);
+y = addWrappedText(doc, "Phone Number", phoneNumber, 40, y);
+y = addWrappedText(doc, "Service Location", serviceLocation, 40, y);
+y = addWrappedText(doc, "Driver Name", driverName, 40, y);
+y = addWrappedText(doc, "Driver Phone", driverPhone, 40, y);
+y = addWrappedText(doc, "PO Number", poNumber, 40, y);
+
+y += 10;
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(13);
